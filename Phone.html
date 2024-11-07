@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Evaluation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #990000;
+            color: white;
+            text-align: left;
+        }
+        .section-header {
+            background-color: #666666;
+            color: white;
+            font-weight: bold;
+        }
+        .comment-section {
+            margin-top: 20px;
+        }
+        #copyButton {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #copyButton:hover {
+            background-color: #45a049;
+        }
+
+        /* Position the Email Form Button at the top of the screen */
+        #emailButton {
+            position: fixed;
+            top: 20px;
+            left: 700px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it's on top */
+        }
+
+        #emailButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Email Button at the top of the screen -->
+    <button id="emailButton" onclick="window.location.href='Email.html';">Go to Email Form</button>
+
+    <h2>Phone Evaluation Form</h2>
+    <p><strong>Total Score: </strong><span id="totalScore">100%</span></p>
+
+    <table>
+        <!-- Section 1: Opening and Communication Skills -->
+        <tr>
+            <th colspan="3">Section 1.0 – Opening and Communication Skills</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row1" value="3" onclick="updateScore(this)" data-description="Did not open the call with a warm, friendly greeting or demonstrate a willingness to assist." /></td>
+            <td>3%</td>
+            <td>Did not open the call with a warm, friendly greeting or demonstrate a willingness to assist.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row2" value="10" onclick="updateScore(this)" data-description="Did not capture or verify necessary account information accurately." /></td>
+            <td>10%</td>
+            <td>Did not capture or verify necessary account information accurately.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row3" value="3" onclick="updateScore(this)" data-description="Grammar, enunciation, pace, or volume was inappropriate or inconsistent." /></td>
+            <td>3%</td>
+            <td>Grammar, enunciation, pace, or volume was inappropriate or inconsistent.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row4" value="3" onclick="updateScore(this)" data-description="Caused the caller to repeat themselves unnecessarily or used unclear language." /></td>
+            <td>3%</td>
+            <td>Caused the caller to repeat themselves unnecessarily or used unclear language.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row5" value="3" onclick="updateScore(this)" data-description="Used jargon or did not ensure clarity in explanations." /></td>
+            <td>3%</td>
+            <td>Used jargon or did not ensure clarity in explanations.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row6" value="4" onclick="updateScore(this)" data-description="Allowed periods of unexplained silence, failing to keep the caller informed." /></td>
+            <td>4%</td>
+            <td>Allowed periods of unexplained silence, failing to keep the caller informed.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row7" value="3" onclick="updateScore(this)" data-description="Did not request or use the caller's name to personalize the interaction." /></td>
+            <td>3%</td>
+            <td>Did not request or use the caller's name to personalize the interaction.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row8" value="3" onclick="updateScore(this)" data-description="Speaking too quickly or too slowly, making it difficult for the caller to follow." /></td>
+            <td>3%</td>
+            <td>Speaking too quickly or too slowly, making it difficult for the caller to follow.</td>
+        </tr>
+
+        <!-- Section 2: Customer Connection and Call Control -->
+        <tr class="section-header">
+            <td colspan="3">Section 2.0 – Customer Connection and Call Control</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row9" value="3" onclick="updateScore(this)" data-description="Did not follow hold procedures properly." /></td>
+            <td>3%</td>
+            <td>Did not follow hold procedures properly.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row10" value="6" onclick="updateScore(this)" data-description="Incorrect transfer procedure (Cold transfer)." /></td>
+            <td>6%</td>
+            <td>Incorrect transfer procedure (Cold transfer).</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row11" value="6" onclick="updateScore(this)" data-description="Did not use effective or focused questioning to address the caller’s needs efficiently." /></td>
+            <td>6%</td>
+            <td>Did not use effective or focused questioning to address the caller’s needs efficiently.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row12" value="3" onclick="updateScore(this)" data-description="Did not use the customer’s name during the call, missing an opportunity to build rapport." /></td>
+            <td>3%</td>
+            <td>Did not use the customer’s name during the call, missing an opportunity to build rapport.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row13" value="4" onclick="updateScore(this)" data-description="Failed to de-escalate difficult or upset callers, lacking empathy or appropriate tone." /></td>
+            <td>4%</td>
+            <td>Failed to de-escalate difficult or upset callers, lacking empathy or appropriate tone.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row14" value="9" onclick="updateScore(this)" data-description="Did not effectively guide the conversation, resulting in an unfocused or lengthy call." /></td>
+            <td>9%</td>
+            <td>Did not effectively guide the conversation, resulting in an unfocused or lengthy call.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row15" value="6" onclick="updateScore(this)" data-description="Did not maintain a positive service attitude or appropriate tone throughout the call." /></td>
+            <td>6%</td>
+            <td>Did not maintain a positive service attitude or appropriate tone throughout the call.</td>
+        </tr>
+
+        <!-- Section 3: Resolution and Closing -->
+        <tr class="section-header">
+            <td colspan="3">Section 3.0 – Resolution and Closing</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row16" value="12" onclick="updateScore(this)" data-description="Did not provide accurate, complete information or offer a clear solution." /></td>
+            <td>12%</td>
+            <td>Did not provide accurate, complete information or offer a clear solution.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row17" value="10" onclick="updateScore(this)" data-description="Failed to follow company procedures, work instructions, or supervisor directives as required." /></td>
+            <td>10%</td>
+            <td>Failed to follow company procedures, work instructions, or supervisor directives as required.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row18" value="5" onclick="updateScore(this)" data-description="Lack or Incorrect case notes (Categorization) in SalesForce, Internal Notes, other tools." /></td>
+            <td>5%</td>
+            <td>Lack or Incorrect case notes (Categorization) in SalesForce, Internal Notes, other tools.</td>
+        </tr>
+    </table>
+
+    <!-- Comment Section -->
+    <div class="comment-section">
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" rows="4" cols="50" readonly></textarea><br>
+        <button id="copyButton" onclick="copyComments()">Copy Comments</button>
+    </div>
+
+    <script>
+        let totalScore = 100; // Initial total score is 100%
+        let deductedPercentage = 0;
+        let additionalPercentage = 0;
+
+        function updateScore(checkbox) {
+            const description = checkbox.getAttribute("data-description");
+            const percentage = parseInt(checkbox.value);
+            let change = checkbox.checked ? percentage : -percentage;
+
+            if (checkbox.checked) {
+                if (checkbox.name === 'rowCompliment') {
+                    additionalPercentage += Math.abs(percentage);
+                    change = Math.abs(percentage);
+                } else if (checkbox.name === 'rowCodeOfConduct') {
+                    document.getElementById("totalScore").textContent = `0%`;
+                    return;
+                } else {
+                    deductedPercentage += percentage;
+                }
+            } else {
+                if (checkbox.name === 'rowCompliment') {
+                    additionalPercentage -= Math.abs(percentage);
+                    change = -Math.abs(percentage);
+                } else {
+                    deductedPercentage -= percentage;
+                }
+            }
+
+            const changeText = `${change}%`;
+            const commentText = `${description} - Deducted: ${changeText}`;
+            const currentComments = document.getElementById("comments").value;
+            document.getElementById("comments").value = checkbox.checked ? `${currentComments}\n${commentText}` : currentComments.replace(`${commentText}\n`, '');
+
+            const newScore = totalScore - deductedPercentage + additionalPercentage;
+            document.getElementById("totalScore").textContent = `${newScore}%`;
+        }
+
+        function copyComments() {
+            const commentsText = document.getElementById("comments");
+            commentsText.select();
+            document.execCommand("copy");
+            alert("Comments copied to clipboard!");
+        }
+    </script>
+
+</body>
+</html>
