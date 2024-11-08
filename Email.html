@@ -3,37 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Evaluation Form</title>
+    <title>Evaluation Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
-        /* Position the Phone Form Button at the top of the screen */
-        #phoneFormButton {
-            position: fixed;
-            top: 20px;
-            left: 700px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            z-index: 1000; /* Ensure it's on top */
-        }
-        #phoneFormButton:hover {
-            background-color: #45a049;
-        }
-
-        h2 {
-            margin-top: 80px; /* Adjust content position to not overlap the button */
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
         th, td {
             border: 1px solid #ddd;
@@ -67,10 +44,7 @@
 </head>
 <body>
 
-    <!-- Phone Form Button -->
-    <button id="phoneFormButton" onclick="window.location.href='Phone.html'">Phone Form</button>
-
-    <h2>Email Evaluation Form</h2>
+    <h2>Evaluation Form</h2>
     <p><strong>Total Score: </strong><span id="totalScore">100%</span></p>
 
     <table>
@@ -174,19 +148,34 @@
             <td>Lack or Incorrect case notes (Categorization) in Salesforce, Internal Notes, other tools</td>
         </tr>
         <tr>
-            <td><input type="checkbox" name="row18" value="10" onclick="updateScore(this)" data-description="Failed to follow-up with the customer or missed an important detail." /></td>
-            <td>10%</td>
-            <td>Failed to follow-up with the customer or missed an important detail.</td>
+            <td><input type="checkbox" name="row18" value="20" onclick="updateScore(this)" data-description="Failed to key correct information in Oracle or Agile" /></td>
+            <td>20%</td>
+            <td>Failed to key correct information in Oracle or Agile</td>
         </tr>
         <tr>
-            <td><input type="checkbox" name="row19" value="10" onclick="updateScore(this)" data-description="Did not take necessary ownership of the customer inquiry." /></td>
+            <td><input type="checkbox" name="row19" value="10" onclick="updateScore(this)" data-description="Did not take necessary actions to ensure First Contact Resolution, leading to potential repeat inquiries." /></td>
             <td>10%</td>
-            <td>Did not take necessary ownership of the customer inquiry.</td>
+            <td>Did not take necessary actions to ensure First Contact Resolution, leading to potential repeat inquiries.</td>
+        </tr>
+
+        <!-- Code of Conduct Section -->
+        <tr class="section-header">
+            <td colspan="3">Followed all Code of Conduct Guidelines</td>
         </tr>
         <tr>
-            <td><input type="checkbox" name="row20" value="10" onclick="updateScore(this)" data-description="Failed to meet customer expectations, did not exceed customer expectations, or left customer with unresolved issues." /></td>
+            <td><input type="checkbox" name="rowCodeOfConduct" value="100" onclick="updateScore(this)" data-description="If a CSR violates our code of conduct, the evaluation will automatically be marked as 0%." /></td>
+            <td>100%</td>
+            <td>If a CSR violates our code of conduct, the evaluation will automatically be marked as 0%.</td>
+        </tr>
+
+        <!-- Compliment Section -->
+        <tr class="section-header">
+            <td colspan="3">Compliments Received</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="rowCompliment" value="10" onclick="updateScore(this)" data-description="If a customer gives a compliment related to the interaction, the CSR receives an additional 10% on their score." /></td>
             <td>10%</td>
-            <td>Failed to meet customer expectations, did not exceed customer expectations, or left customer with unresolved issues.</td>
+            <td>If a customer gives a compliment related to the interaction, the CSR receives an additional 10% on their score.</td>
         </tr>
     </table>
 

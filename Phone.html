@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Evaluation Form</title>
+    <title>Evaluation Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,31 +40,11 @@
         #copyButton:hover {
             background-color: #45a049;
         }
-
-        /* Position the Email Form Button at the top of the screen */
-        #emailButton {
-            position: fixed;
-            top: 20px;
-            left: 700px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-            z-index: 1000; /* Ensure it's on top */
-        }
-
-        #emailButton:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Email Button at the top of the screen -->
-    <button id="emailButton" onclick="window.location.href='Email.html';">Go to Email Form</button>
-
-    <h2>Phone Evaluation Form</h2>
+    <h2>Evaluation Form</h2>
     <p><strong>Total Score: </strong><span id="totalScore">100%</span></p>
 
     <table>
@@ -172,9 +152,43 @@
             <td>5%</td>
             <td>Lack or Incorrect case notes (Categorization) in SalesForce, Internal Notes, other tools.</td>
         </tr>
+        <tr>
+            <td><input type="checkbox" name="row19" value="20" onclick="updateScore(this)" data-description="Failed to key correct information in Oracle or Agile." /></td>
+            <td>20%</td>
+            <td>Failed to key correct information in Oracle or Agile.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row20" value="10" onclick="updateScore(this)" data-description="Did not take necessary actions to ensure First Contact Resolution, leading to potential repeat inquiries." /></td>
+            <td>10%</td>
+            <td>Did not take necessary actions to ensure First Contact Resolution, leading to potential repeat inquiries.</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="row21" value="3" onclick="updateScore(this)" data-description="Did not verify order details or summarize key points before closing the call." /></td>
+            <td>3%</td>
+            <td>Did not verify order details or summarize key points before closing the call.</td>
+        </tr>
+
+        <!-- Code of Conduct Section -->
+        <tr class="section-header">
+            <td colspan="3">Followed all Code of Conduct Guidelines</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="rowCodeOfConduct" value="100" onclick="updateScore(this)" data-description="If a CSR violates our code of conduct, the evaluation will automatically be marked as 0%." /></td>
+            <td>100%</td>
+            <td>If a CSR violates our code of conduct, the evaluation will automatically be marked as 0%.</td>
+        </tr>
+
+        <!-- Compliment Section -->
+        <tr class="section-header">
+            <td colspan="3">Compliments Received</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="rowCompliment" value="10" onclick="updateScore(this)" data-description="If a customer gives a compliment related to the interaction, the CSR receives an additional 10% on their score." /></td>
+            <td>10%</td>
+            <td>If a customer gives a compliment related to the interaction, the CSR receives an additional 10% on their score.</td>
+        </tr>
     </table>
 
-    <!-- Comment Section -->
     <div class="comment-section">
         <label for="comments">Comments:</label><br>
         <textarea id="comments" rows="4" cols="50" readonly></textarea><br>
@@ -191,30 +205,38 @@
             const percentage = parseInt(checkbox.value);
             let change = checkbox.checked ? percentage : -percentage;
 
+            // If the checkbox is checked, deduct or add the percentage based on its type
             if (checkbox.checked) {
                 if (checkbox.name === 'rowCompliment') {
+                    // Compliment: Adds 10% if checked
                     additionalPercentage += Math.abs(percentage);
-                    change = Math.abs(percentage);
+                    change = Math.abs(percentage);  // Adjust the change to be positive
                 } else if (checkbox.name === 'rowCodeOfConduct') {
+                    // Code of Conduct: Set score to 0% if violated
                     document.getElementById("totalScore").textContent = `0%`;
-                    return;
+                    return; // No further calculation if Code of Conduct is violated
                 } else {
+                    // All other fields: Deduct points
                     deductedPercentage += percentage;
                 }
             } else {
                 if (checkbox.name === 'rowCompliment') {
+                    // Compliment: Subtract 10% if unchecked
                     additionalPercentage -= Math.abs(percentage);
-                    change = -Math.abs(percentage);
+                    change = -Math.abs(percentage);  // Adjust the change to be negative
                 } else {
+                    // All other fields: Add back the deducted points
                     deductedPercentage -= percentage;
                 }
             }
 
-            const changeText = `${change}%`;
+            // Add description and percentage to the comment box
+            const changeText = `${change}%`; // Remove the "+" symbol
             const commentText = `${description} - Deducted: ${changeText}`;
             const currentComments = document.getElementById("comments").value;
             document.getElementById("comments").value = checkbox.checked ? `${currentComments}\n${commentText}` : currentComments.replace(`${commentText}\n`, '');
 
+            // Update the total score
             const newScore = totalScore - deductedPercentage + additionalPercentage;
             document.getElementById("totalScore").textContent = `${newScore}%`;
         }
